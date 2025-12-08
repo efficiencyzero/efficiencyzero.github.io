@@ -1,15 +1,9 @@
-<!--
-Code from: https://visjs.github.io/vis-network/examples/network/basicUsage.html
-source code: https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js
--->
 <!DOCTYPE html>
 <html lang="en">
  <head>
   <title>
-   Wikipedia Visualiser
+   Notifier
   </title>
-  <script src="/vis-network.min.js" type="text/javascript">
-  </script>
   <style type="text/css">
    #mynetwork {
         width: 100%;
@@ -26,13 +20,12 @@ source code: https://visjs.github.io/vis-network/standalone/umd/vis-network.min.
    Enter something.
   </p>
   <div style="margin-bottom: 15px; width: 100%;">
-   <form id="form" role="search">
-    <input autofocus="" id="query" name="q" placeholder="Something..." type="search"/>
-    <input id="id" name="id" type="hidden"/>
+   <form id="form" role="input">
+    <input autofocus="" id="input" name="q" placeholder="Something..." type="input"/>
     <button>
      Enter
     </button>
-    <input id="expand" name="expand" type="hidden" value=""/>
+    <input id="valid" name="valid" type="hidden" value=""/>
    </form>
   </div>
  </body>
