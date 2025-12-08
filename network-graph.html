@@ -1,0 +1,72 @@
+<!--
+Code from: https://visjs.github.io/vis-network/examples/network/basicUsage.html
+source code: https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js
+-->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>
+   Wikipedia Visualiser
+  </title>
+  <script src="/vis-network.min.js" type="text/javascript">
+  </script>
+  <style type="text/css">
+   #mynetwork {
+        width: 100%;
+        height: 75vh;
+        border: 1px solid lightgray;
+      }
+  </style>
+ </head>
+ <body>
+  <h2>
+   Wikipedia Visualiser
+  </h2>
+  <h3>
+   Instructions
+  </h3>
+  <p>
+   Enter a word in the search bar and click search to create a new network graph.
+   <br/>
+   Double click on a node to further expand the graph.
+   <br/>
+   Please note that some searches are case sensitive, and special characters are not supported in this version.
+  </p>
+  <div style="margin-bottom: 15px; width: 100%;">
+   <form id="form" role="search">
+    <input autofocus="" id="query" name="q" placeholder="Search..." type="search"/>
+    <input id="id" name="id" type="hidden"/>
+    <button>
+     Search
+    </button>
+    <input id="expand" name="expand" type="hidden" value=""/>
+   </form>
+  </div>
+  <div id="mynetwork">
+  </div>
+  <script id="network" type="text/javascript">
+   var nodes = new vis.DataSet([
+   ]);
+   var edges = new vis.DataSet([
+   ]);
+   var container = document.getElementById("mynetwork");
+   var data = {nodes: nodes, edges: edges,};
+   var options = {};
+   var network = new vis.Network(container, data, options);
+   window.alert('Unable to generate graph. Please try another word.');
+  </script>
+  <script id="double-click-event" type="text/javascript">
+   document.getElementById('expand').value = 'False';
+   network.on('doubleClick', function(properties) {
+   var ids = properties.nodes;
+   var clickedNodes = nodes.get(ids);
+   document.getElementById('expand').value = 'True';
+   document.getElementById('id').value = clickedNodes[0].id;
+   document.getElementById('query').value = clickedNodes[0].label;
+   document.getElementById('form').submit();
+   console.log('clicked nodes:', clickedNodes);
+   console.log(ids, clickedNodes[0].label);
+   });
+  </script>
+ </body>
+</html>
